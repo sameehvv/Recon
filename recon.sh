@@ -43,9 +43,11 @@ else
     subjack -w $url/subdomains.txt -t 100 -timeout 30 -ssl -c ~/go/src/github.com/haccer/subjack/fingerprints.json -v 3 >> $url/takeover.txt
     echo "Done"
 
-    #waybackurls
-    echo -e "\n[+]Scraping wayback data"
-    cat $url/subdomains.txt | waybackurls | sort -u >> $url/waybackdata.txt   
+    #fetch URLs
+    echo -e "\n[+]Fetching URLs"
+    cat $url/subdomains.txt | waybackurls >> waybackdata.txt
+    cat $url/subdomains.txt | gau >> gaudata.txt
+    cat waybackdata.txt gaudata.txt | sort -u >> $url/urls.txt   
     echo "Done"
 
     #aquatone
