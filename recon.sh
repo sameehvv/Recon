@@ -52,7 +52,7 @@ else
 
     #aquatone
     echo -e "\n[+]Running aquatone on subdomains"
-    cat $url/subdomains.txt | aquatone -out $url/aquatone
+    cat $url/subdomains.txt | httprobe | aquatone -out $url/aquatone
     echo "Done"
 
     echo "All files saved to '$url' folder"
